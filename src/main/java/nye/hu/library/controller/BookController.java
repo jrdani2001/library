@@ -24,11 +24,13 @@ public class BookController {
         return "books";
     }
 
+
     @GetMapping("/new")
     public String showBookForm(Model model) {
         model.addAttribute("book", new Book());
         return "bookform";
     }
+
 
     @PostMapping
     public String saveBook(@ModelAttribute("book") Book book) {
@@ -55,4 +57,20 @@ public class BookController {
         bookRepository.deleteById(id);
         return "redirect:/books";
     }
+
+    @GetMapping("/search")
+    public String searchBooks(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        if (keyword != null && !keyword.isEmpty()) {
+            // Átalakítjuk a keresési kifejezést kisbetűssé
+            String keywordLowerCase = keyword.toLowerCase();
+            List<Book> foundBooks = bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(keywordLowerCase, keywordLowerCase);
+            model.addAttribute("books", foundBooks);
+        } else {
+            List<Book> books = bookRepository.findAll();
+            model.addAttribute("books", books);
+        }
+        return "books";
+    }
+
+
 }

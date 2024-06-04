@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Könyvtár Könyvkezelő Rendszer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 2rem 1rem;
+        }
+    </style>
 </head>
 <body>
-<h1>Üdvözöllek a Könyvtár Könyvkezelő Rendszerben!</h1>
-<a href="/books">Könyvek megtekintése</a>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Library</h1>
+        <p class="lead">Your gateway to a world of knowledge and information</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="/books" role="button">View Books</a>
+        <a class="btn btn-secondary btn-lg" href="/books/new" role="button">Add a New Book</a>
+    </div>
+</div>
 </body>
 </html>

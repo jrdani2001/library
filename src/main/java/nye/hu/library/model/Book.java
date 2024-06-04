@@ -1,6 +1,7 @@
 package nye.hu.library.model;
 
 
+import javax.validation.constraints.NotNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String title;
     private String author;
     private String isbn;

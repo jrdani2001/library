@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Könyvek Listája</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<h1>Könyvek</h1>
-<a href="/books/new">Új könyv hozzáadása</a>
-<table>
-    <thead>
-    <tr>
-        <th>Cím</th>
-        <th>Szerző</th>
-        <th>ISBN</th>
-        <th>Műveletek</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.title}">Cím</td>
-        <td th:text="${book.author}">Szerző</td>
-        <td th:text="${book.isbn}">ISBN</td>
-        <td>
-            <a th:href="@{/books/{id}(id=${book.id})}">Megtekintés</a>
-            <a th:href="@{/books/edit/{id}(id=${book.id})}">Szerkesztés</a>
-            <a th:href="@{/books/delete/{id}(id=${book.id})}">Törlés</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <h1 class="text-center">Könyvek</h1>
+    <form class="form-inline my-2 my-lg-0" action="/books/search" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <div class="mb-3 text-right">
+        <a class="btn btn-primary" href="/books/new">Új könyv hozzáadása</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Cím</th>
+            <th>Szerző</th>
+            <th>ISBN</th>
+            <th>Műveletek</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}">Cím</td>
+            <td th:text="${book.author}">Szerző</td>
+            <td th:text="${book.isbn}">ISBN</td>
+            <td>
+                <a class="btn btn-info btn-sm" th:href="@{/books/{id}(id=${book.id})}">Megtekintés</a>
+                <a class="btn btn-warning btn-sm" th:href="@{/books/edit/{id}(id=${book.id})}">Szerkesztés</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/books/delete/{id}(id=${book.id})}">Törlés</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
