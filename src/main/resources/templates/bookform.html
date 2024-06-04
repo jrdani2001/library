@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Könyv Form</title>
+</head>
+<body>
+<h1 th:text="${book.id != null} ? 'Könyv szerkesztése' : 'Új könyv hozzáadása'">Könyv Form</h1>
+<form th:action="@{/books}" th:object="${book}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label>Cím</label>
+        <input type="text" th:field="*{title}" placeholder="Cím">
+    </div>
+    <div>
+        <label>Szerző</label>
+        <input type="text" th:field="*{author}" placeholder="Szerző">
+    </div>
+    <div>
+        <label>ISBN</label>
+        <input type="text" th:field="*{isbn}" placeholder="ISBN">
+    </div>
+    <div>
+        <button type="submit">Mentés</button>
+    </div>
+</form>
+</body>
+</html>
